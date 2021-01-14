@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+
+  <style>
+    :root {
+      --mainColor: #0E94FF;
+    }
+
+    .wrapper {
+      font: 400 18px "Source Sans Pro", sans-serif;
+      color: var(--mainColor);
+    }
+
+    .wrapper {
+      max-width: 50%;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    /* form  transport*/
+    .form__item {
+      margin-bottom: 15px;
+    }
+
+    .transport__input {
+      width: 40%;
+      height: 30px;
+      padding: 0 10px;
+      margin-left: 15px;
+    }
+
+    legend {
+      color: #000;
+    }
+
+    .transport__btn {
+      display: inline-block;
+      padding: 13px 17px;
+      color: #fff;
+      margin-top: 20px;
+      font: 400 18px "Source Sans Pro", sans-serif;
+      border: none;
+      background: #295CFF;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <form action="#" method="POST" class="transport-form" id="transport-form">
+
+      <div class="form__wrapper">
+        <div class="form__contact">
+          <fieldset>
+            <legend>Персональні дані</legend>
+            <div class="form__item">
+              <label for="transport__name">Ім'я водія:</label><br>
+              <input type="text" id="transport__name" name="transport__name" class="transport__input"
+                placeholder="Ваше ім'я" required>
+            </div>
+
+            <div class="form__item">
+              <label for="transport__phone">Контактний номер:</label><br>
+              <input type="tel" id="transport__phone" name="transport__phone" class="transport__input"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Формат:123-456-7890" required>
+            </div>
+
+          </fieldset>
+        </div>
+        <div class="form__details">
+          <fieldset>
+            <legend>Деталі поїздки</legend>
+            <div class="form__item">
+              <label for="transport__placeFrom">
+                Звідки:<input type="text" name="placeFrom" class="transport__input" id="transport__placeFrom" required>
+              </label>
+            </div>
+
+            <div class="form__item">
+              Виберіть пункт пропуску:
+              <select name="selectPlace" id="transport__selectPlace" required>
+                <option value="1">Шегині</option>
+                <option value="1">Ягодин</option>
+                <option value="1">Грушів</option>
+                <option value="1">Рава-Руська</option>
+                <option value="1">Мостиська</option>
+                <option value="1">Краківець</option>
+              </select>
+            </div>
+
+            <div class="form__item">
+              <label for="transport__placeTo">
+                Куди:<input type="text" name="placeTo" id="transport__placeTo" class="transport__input" required>
+              </label>
+            </div>
+
+            <div class="form__item">
+              <div class="form__title">Виберіть підходящий для вас варіант:</div>
+              <label for="transport__person">Пасажир</label><input type="radio" name="transport__type"
+                id="transport__person">
+              <label for="transport__baggage">Багаж</label><input type="radio" name="transport__type"
+                id="transport__baggage">
+              <label for="transport__person-baggage">Пасажир з багажом</label><input type="radio" name="transport__type"
+                id="transport__person-baggage">
+            </div>
+
+            <div class="form__item">
+              <label for="transport__amount">Вкажіть кількість пасажирів:</label>
+              <input type="number" min="1" max="10" id="transport__amount">
+            </div>
+
+
+            <div class="form__item">
+              <label for="transport__currency">Вкажіть ціну і валюту:</label><br>
+              <input type="text" name="transport__currency" class="transport__input" id="transport__currency"
+                placeholder="Поле не обов'язкове для заповнення">
+            </div>
+
+            <div class="form__item">
+              <label for="transport__date">Дата виїзду:</label><br>
+              <input type="date" name="transport__date" class="transport__input" id="transport__date">
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+
+
+
+
+      <input type="submit" value="Додати маршут" class="transport__btn">
+      <input type="reset" value="Очисти форму" class="transport__btn">
+    </form>
+  </div>
+
+  <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA93iAbpI6zjyCs4TWyRopE_d-18_n6Dyo&libraries=places&callback=activatePlaces">
+    </script>
+
+  <script>
+    function activatePlaces() {
+      var transportInput = document.getElementById("transport__placeFrom");
+      var autoComplete = new google.maps.places.Autocomplete(transportInput);
+    }
+  </script>
+</body>
+
+</html>
